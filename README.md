@@ -3,67 +3,94 @@ Lab - Input Output
 
 Before you start
 ----------
-The purpose of this lab is to practice reading and writing object to file. Various classes in java.io will be used to accomplish the exercises. Please read the instruction below.s
+The purpose of this lab is to practice using different type of collections provided by Java.
 
+Exercise One - Simple Collections
+---------------------
+1.What is the output of the following code?
 
-Exercise One - Read characters
--------------
-Complete the ​ printNumEsWithFileReader() method in the ​ lab.oodp.io.numchar.CharCounter class,
-which should use a ​ FileReader to read input2.txt and print out the following
-information:
-1. The total number of characters in the file
-2. The number of e’s and E’s in the file
-
-Please use TestCharCounter to test your code.
-
-Exercise Two - Movie Read and Write
--------------
-In the lab.oodp.io.movie package you’ll see the Movie class from a previous lab. In this exercise, we’ll create two programs: *MovieWriter* will create a file containing data for lots of movies, while *MovieReader* one will read that file and create Movie objects.
-
-1. Complete MovieWriter’s *saveMovies* method. This method should use a DataOutputStream to write the contents of the films array to the given file. ​ 
-
-2. Complete MovieReader’s *loadMovies* method. This method should use a
-DataInputStream to read the contents of the given file and use it to create, fill and
-return an array of Movie objects.
-
-**Note: You should not make any assumptions about the number of movies in the array – your program (and the one in part 2) should work for any number of movies!** 
-
-Below is expected output when running MovieReader.
-
-```
-Movies loaded successfully from movies.dat!
-Movie Collection
-================
-Meet the Parents (2000), 107 minutes, Director: Jay Roach
-The Parent Trap (1961), 129 minutes, Director: David Swift
-Alice In Wonderland (2009), 109 minutes, Director: Tim Burton
-Dark Shadows (2012), 113 minutes, Director: Tim Burton
-The Iron Lady (2011), 105 minutes, Director: Phylliday Lloyd
-The Help (2011), 137 minutes, Director: Tate Taylor
-From Russia With Love (1963), 110 minutes, Director: Terence Young
-The King's Speech (2011), 118 minutes, Director: Tom Hooper
-Charlie and the Chocolate Factory (2005), 115 minutes, Director: Tim Burton
-Easy Rider (1969), 94 minutes, Director: Dennis Hopper
-Walk the Line (2005), 136 minutes, Director: James Mangold
-Kaikohe Demolition (2004), 52 minutes, Director: Florian Habicht
-Brokeback Mountain (2005), 134 minutes, Director: Ang Lee
-Gladiator (2000), 154 minutes, Director: Ridley Scott
-The Long Voyage Home (1940), 105 minutes, Director: John Ford
-Happy-Go-Lucky (2008), 118 minutes, Director: Mike Leigh
-The Big Wedding (2013), 89 minutes, Director: Justin Zackham
-The Intouchables (2011), 112 minutes, Director: Olivier Nakache and Eric Toledano
-Searching for Sugar Man (2012), 86 minutes, Director: Malik Bendjelloul
-
-The most recent movie is: Searching for Sugar Man (2012), 86 minutes, Director: Malik Bendjelloul
-The longest movie is: The Intouchables (2011), 112 minutes, Director: Olivier Nakache and Eric Toledano
-
-Searching for Sugar Man was directed by Malik Bendjelloul
-Liberal Arts is not in the collection.
-The Intouchables was directed by Olivier Nakache and Eric Toledano
-
+```java
+ArrayList list = new ArrayList();
+Character letter = new Character('a');
+list.add(letter);
+if (list.get(0).equals("a")) {
+	System.out.println("funny");
+} else {
+	System.out.println("Not funny");
+}
 ```
 
-You can use **TestMovie** class to test this exercise.
+```
+Your answer here
+```
+
+2.What is the output of the following code?
+
+```java
+ArrayList<Point> list = new ArrayList<Point>();
+Point pt1 = new Point(3, 4);
+list.add(pt1);
+Point pt2 = list.get(0);
+pt2.x = 23;
+if (pt2 == pt1) {
+	System.out.println("Same object");
+} else {
+	System.out.println("Different object");
+}
+```
+
+```
+Your answer here
+```
+
+Exercise Two - Pancake
+----------------------
+The restaurant, PancakeTopia, is a very unusual, yet popular restaurant. Every day for lunch, they make a certain number of pancakes at random and put them in a large stack. Customers who want some delicious pancake-y goodness for lunch form a large queue outside. In turn, the restaurant lets one customer into the restaurant, who sits down at the table and eats as many pancakes as they want from the top of the stack. One that person is done, the next person sits down, and so on, until PancakeTopia runs out of either pancakes or customers for the day. Sometimes, customers at the end of the queue might not get fed – but PancakeTopia remains in business since their pancakes are the best in the land – the reward is worth the risk!
+
+In this exercise, we’ll complete a program which models a typical lunchtime at PancakeTopia. The nearly-complete application is located in the lab.oodp.pancake package, and example outputs for the complete program (once you’ve made the necessary changes) can be found in the files PancakeTopia-ExampleOutput-01.txt and PancakeTopia-ExampleOutput-02.txt, which are located directly in the project directory. Here are the steps to go through to complete this exercise.
+
+###Step 1: Understanding###
+Have a look at the code and see what’s there. Try to get an idea of how everything fits together. Perhaps try to draw some quick UML diagrams to assist you. This is often a good first step when trying to learn any new system.
+
+###Step 2:Getting the customers to form a queue###
+In the PancakeApp class, you’ll have noticed a method called *createCustomerQueue()* which creates a random number of customers (*numCustomers*), and should add those customers to a queue. For this step (you may follow TODO in the source code), complete this method. Firstly, initialize the queue variable to something other than null. Secondly, call one of queue’s methods at the marked location to add the generated customer to that queue. Remember that queues are First-In-First-Out (FIFO) – meaning, the first customer to line up will be the first to get served.
+
+Next, in PancakeShop’s *serveLunch()* method, there’s a loop where we want to continually get the customer at the front of the queue. Complete that line by using an appropriate poll statement. Remember that we should be de-queuing customers in the same order that we queue them.
+
+**HINT: You can use ArrayDeque and its method such as addLast and pollFirst to handle queue in FIFO manner**
+
+
+###Step 3: Stacking those pancakes###
+In PancakeShop’s *createPancakes()* method, we are creating a random number of Pancakes. Complete the method so that created pancakes get added to the top of the pancakes stack. Remember that stacks are Last-In-First-Out (LIFO) – meaning, the last pancake to be added to the stack will be the first one that’s eaten by a customer.
+
+**HINT: You can use ArrayDeque and its method such as addFirst and pollFirst to handle stack in LIFO manner**
+
+
+###Step 4: Eat pancakes!###
+We now have a queue of customers and a stack of pancakes. It’s time to teach the customers how to eat! This is handled in the Customer’s *eat()* method, which you have to complete. In this method, customers are handed a stack of pancakes and should try to eat as many pancakes from the top of the stack as will fit in their belly. If there’s not enough pancakes for them (no more pancake in the stack such as pollFirst become null), they should complain by throwing a **HungryException**.
+
+
+Below is the result of running PancakeApp. Please note that your result might not be exactly the same. One thing to notice is customer's id such as Jayna[1] and Donya[2] are in ascending order, while pancake's id are descending order (e.g. 839,838,837,836)
+
+```
+Jayna [1] sat at the table. They want to eat 10 pancakes for lunch!
+Jayna [1] ate Pancake #839!
+Jayna [1] ate Pancake #838!
+Jayna [1] ate Pancake #837!
+Jayna [1] ate Pancake #836!
+Jayna [1] ate Pancake #835!
+Jayna [1] ate Pancake #834!
+Jayna [1] ate Pancake #833!
+Jayna [1] ate Pancake #832!
+Jayna [1] ate Pancake #831!
+Jayna [1] ate Pancake #830!
+Jayna [1] ate 10 pancakes in total!
+Jayna [1] is happy and full!
+Donya [2] sat at the table. They want to eat 3 pancakes for lunch!
+Donya [2] ate Pancake #829!
+Donya [2] ate Pancake #828!
+Donya [2] ate Pancake #827!
+```
 
 Submit this lab
 ------------------
