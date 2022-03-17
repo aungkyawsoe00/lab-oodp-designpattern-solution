@@ -9,6 +9,7 @@ public class Customer {
 
     private int bellySize;
     private String name;
+    private int number;
 
     /**
      * Creates a new customer with the given belly size and name.
@@ -16,9 +17,10 @@ public class Customer {
      * @param bellySize the number of pancakes this person can eat in one sitting
      * @param name the name of the person
      */
-    public Customer(int bellySize, String name) {
+    public Customer(int bellySize, String name, int number) {
         this.bellySize = bellySize;
         this.name = name;
+        this.number = number;
     }
 
     /**
@@ -49,24 +51,32 @@ public class Customer {
             
             if (p != null) {
 
-                System.out.println(name + " ate " + p + "!");
+                System.out.println(getName() + " ate " + p + "!");
                 desiredMealSize--;
 
             } else {
-                throw new HungryException(this.name + " is still hungry :(");
+                throw new HungryException(getName() + " is still hungry :(");
             }
 
         }
 
-        System.out.println(name + " ate " + this.bellySize + " pancakes in total!");
+        System.out.println(getName() + " ate " + this.bellySize + " pancakes in total!");
 
     }
 
     public String getName() {
-        return name;
+        return name + " ["+number+"]";
     }
 
     public int getBellySize() {
         return bellySize;
     }
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 }

@@ -49,10 +49,10 @@ The restaurant, PancakeTopia, is a very unusual, yet popular restaurant. Every d
 
 In this exercise, we’ll complete a program which models a typical lunchtime at PancakeTopia. The nearly-complete application is located in the lab.oodp.pancake package, and example outputs for the complete program (once you’ve made the necessary changes) can be found in the files PancakeTopia-ExampleOutput-01.txt and PancakeTopia-ExampleOutput-02.txt, which are located directly in the project directory. Here are the steps to go through to complete this exercise.
 
-###Step 1: Understanding###
+### Step 1: Understanding ###
 Have a look at the code and see what’s there. Try to get an idea of how everything fits together. Perhaps try to draw some quick UML diagrams to assist you. This is often a good first step when trying to learn any new system.
 
-###Step 2:Getting the customers to form a queue###
+### Step 2:Getting the customers to form a queue ###
 In the PancakeApp class, you’ll have noticed a method called *createCustomerQueue()* which creates a random number of customers (*numCustomers*), and should add those customers to a queue. For this step (you may follow TODO in the source code), complete this method. Firstly, initialize the queue variable to something other than null. Secondly, call one of queue’s methods at the marked location to add the generated customer to that queue. Remember that queues are First-In-First-Out (FIFO) – meaning, the first customer to line up will be the first to get served.
 
 Next, in PancakeShop’s *serveLunch()* method, there’s a loop where we want to continually get the customer at the front of the queue. Complete that line by using an appropriate poll statement. Remember that we should be de-queuing customers in the same order that we queue them.
@@ -60,13 +60,13 @@ Next, in PancakeShop’s *serveLunch()* method, there’s a loop where we want t
 **HINT: You can use ArrayDeque and its method such as addLast and pollFirst to handle queue in FIFO manner**
 
 
-###Step 3: Stacking those pancakes###
+### Step 3: Stacking those pancakes ###
 In PancakeShop’s *createPancakes()* method, we are creating a random number of Pancakes. Complete the method so that created pancakes get added to the top of the pancakes stack. Remember that stacks are Last-In-First-Out (LIFO) – meaning, the last pancake to be added to the stack will be the first one that’s eaten by a customer.
 
 **HINT: You can use ArrayDeque and its method such as addFirst and pollFirst to handle stack in LIFO manner**
 
 
-###Step 4: Eat pancakes!###
+### Step 4: Eat pancakes! ###
 We now have a queue of customers and a stack of pancakes. It’s time to teach the customers how to eat! This is handled in the Customer’s *eat()* method, which you have to complete. In this method, customers are handed a stack of pancakes and should try to eat as many pancakes from the top of the stack as will fit in their belly. If there’s not enough pancakes for them (no more pancake in the stack such as pollFirst become null), they should complain by throwing a **HungryException**.
 
 
@@ -91,6 +91,7 @@ Donya [2] ate Pancake #829!
 Donya [2] ate Pancake #828!
 Donya [2] ate Pancake #827!
 ```
+You can use TestPancakeApp to test this exercise.
 
 Submit this lab
 ------------------

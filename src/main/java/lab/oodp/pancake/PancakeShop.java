@@ -3,9 +3,7 @@ package lab.oodp.pancake;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * Created by Andrew Meads on 25/03/2017.
- */
+
 public class PancakeShop {
 
     private String name;
@@ -32,8 +30,9 @@ public class PancakeShop {
             Customer customer;
             // Continually de-queues customers till there are none left.
             // HINT: Remember, queues are FIFO.
-            while ((customer = customerQueue.pollFirst()) != null) {
-
+            while (customerQueue.size()>0) {
+            	//TODO: get customer from the queue in FIFO manner
+            	customer = customerQueue.pollFirst();
                 System.out.println(customer.getName() + " sat at the table. They want to eat "
                         + customer.getBellySize() + " pancakes for lunch!");
 
@@ -79,4 +78,15 @@ public class PancakeShop {
         return pancakes;
 
     }
+
+	public Deque<Customer> getCustomerQueue() {
+		return customerQueue;
+	}
+
+	public Deque<Pancake> getPancakeStack() {
+		return pancakeStack;
+	}
+    
+ 
+    
 }
