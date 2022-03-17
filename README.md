@@ -1,126 +1,69 @@
-Lab - Exceptions
+Lab - Input Output
 ==========
 
 Before you start
 ----------
-The purpose of this lab is to practice Java programming and basic object oriented programming. You will also learn how to develop Java source and unit testing it. In this project, it contains two sub-folders. **src/main** contains the source code that you have to complete. **src/test** contains unit testing script that helps to check your exercises.
+The purpose of this lab is to practice reading and writing object to file. Various classes in java.io will be used to accomplish the exercises. Please read the instruction below.s
 
 
-Exercise One - Try & Catch
+Exercise One - Read characters
 -------------
-Please read the following code and answer the questions. You do not need Eclipse for this.
-1. Rewrite the following code, adding an appropriate try-catch block to it with proper exception class.
+Complete the ​ printNumEsWithFileReader() method in the ​ lab.oodp.io.numchar.CharCounter class,
+which should use a ​ FileReader to read input2.txt and print out the following
+information:
+1. The total number of characters in the file
+2. The number of e’s and E’s in the file
 
-```java
-private​ ​ void​ tryCatch02() {
-	int​ ​ num1​ = 120, ​ num2​ = 120, ​ result​ = 0;
-	result​ = ​ num2​ / (​ num1​ - ​ num2​ );
-	System.​ out ​ .println(​ "Result: "​ + ​ result​ );
-}
-```
-```java
-private void tryCatch02() {
-	int num1 = 120, num2 = 120, result = 0;
-	try {
-		result = num2 / (num1 - num2);
-	} catch (ArithmeticException e) {
-		// Handle the error...
-	}
-	System.out.println("Result: " + result);
-}
-```
+Please use TestCharCounter to test your code.
 
-2.What is the output of the following code, when tryCatch06() is called?
-
-```java
-private void tryCatch06() {
-	try {
-		try06(0, "");
-		System.out.println("A");
-	} catch (ArithmeticException e) {
-		System.out.println("B Error");
-	}
-}
-
-private void try06(int num, String s) {
-	System.out.println("C");
-	try {
-		num = s.length();
-		num = 200 / num;
-	} catch (NullPointerException e) {
-		System.out.println("E Error");
-	}
-	System.out.println("F");
-}
-```
-
-```
-C
-B Error
-```
-
-3. What is the output of the following code, when ​ tryCatch08()​ is called?
-
-```java
-private​ ​ void​ tryCatch08() {
-	try​ {
-		try08(0, ​ null​ );
-		System.​ out ​ .println(​ "A"​ );
-	} ​ catch​ (NullPointerException ​ e ​ ) {
-		System.​ out ​ .println(​ "B"​ );
-	}
-}
-private​ ​ void​ try08(​ int​ ​ num​ , String ​ s ​ ) {
-	System.​ out ​ .println(​ "C"​ );
-	try​ {
-		num​ = ​ s ​ .length();
-		System.​ out ​ .println(​ "D"​ );
-	} ​ finally​ {
-		System.​ out ​ .println(​ "E"​ );
-	}
-		System.​ out ​ .println(​ "F"​ );
-	}
-}
-```
-
-```java
-C
-E
-B
-```
-
-Exercise Two - Arrays and Exception
+Exercise Two - Movie Read and Write
 -------------
-In the *lab.oodp.exception package*, ArraysAndExceptions.java contains the beginnings of a program which should generate an array of five random integers. The program should then allow the user to enter an index, and should print out the element in the generated array at the supplied index. Complete the program by following these steps:
+In the lab.oodp.io.movie package you’ll see the Movie class from a previous lab. In this exercise, we’ll create two programs: *MovieWriter* will create a file containing data for lots of movies, while *MovieReader* one will read that file and create Movie objects.
 
-1. Complete the generateArray() method, which should generate and return the array of
-random numbers.
-2. Create three new classes – InvalidIndexException, IndexTooLowException, and
-IndexTooHighException. These should all be checked exceptions (i.e. extend the
-Exception class).
-3. Modify the *getArrayIndex* method. This method convert given String into int (using Integer.parseInt() method) and return it. It throws these three exceptions appropriately:
+1. Complete MovieWriter’s *saveMovies* method. This method should use a DataOutputStream to write the contents of the films array to the given file. ​ 
 
- * InvalidIndexException should be thrown when the given String is not an integer number.
- * IndexTooLowException should be thrown when the converted integer number is too small to be a valid index.
- * IndexTooHighException should be thrown when the converted integer number is too large to be a valid index.
- 
-4. Handle these exceptions in the start() method appropriately. If one is caught, the user should be told of their error and be allowed to try again.
+2. Complete MovieReader’s *loadMovies* method. This method should use a
+DataInputStream to read the contents of the given file and use it to create, fill and
+return an array of Movie objects.
 
-Here is the sample of runing ArraysAndExceptions.
+**Note: You should not make any assumptions about the number of movies in the array – your program (and the one in part 2) should work for any number of movies!** 
+
+Below is expected output when running MovieReader.
 
 ```
-Enter an index:
->> -5
-Error: Index too low!
-Enter an index:
->> 10
-Error: Index too high!
-Enter an index:
->> 3
-The element at index 3 is: 736
+Movies loaded successfully from movies.dat!
+Movie Collection
+================
+Meet the Parents (2000), 107 minutes, Director: Jay Roach
+The Parent Trap (1961), 129 minutes, Director: David Swift
+Alice In Wonderland (2009), 109 minutes, Director: Tim Burton
+Dark Shadows (2012), 113 minutes, Director: Tim Burton
+The Iron Lady (2011), 105 minutes, Director: Phylliday Lloyd
+The Help (2011), 137 minutes, Director: Tate Taylor
+From Russia With Love (1963), 110 minutes, Director: Terence Young
+The King's Speech (2011), 118 minutes, Director: Tom Hooper
+Charlie and the Chocolate Factory (2005), 115 minutes, Director: Tim Burton
+Easy Rider (1969), 94 minutes, Director: Dennis Hopper
+Walk the Line (2005), 136 minutes, Director: James Mangold
+Kaikohe Demolition (2004), 52 minutes, Director: Florian Habicht
+Brokeback Mountain (2005), 134 minutes, Director: Ang Lee
+Gladiator (2000), 154 minutes, Director: Ridley Scott
+The Long Voyage Home (1940), 105 minutes, Director: John Ford
+Happy-Go-Lucky (2008), 118 minutes, Director: Mike Leigh
+The Big Wedding (2013), 89 minutes, Director: Justin Zackham
+The Intouchables (2011), 112 minutes, Director: Olivier Nakache and Eric Toledano
+Searching for Sugar Man (2012), 86 minutes, Director: Malik Bendjelloul
+
+The most recent movie is: Searching for Sugar Man (2012), 86 minutes, Director: Malik Bendjelloul
+The longest movie is: The Intouchables (2011), 112 minutes, Director: Olivier Nakache and Eric Toledano
+
+Searching for Sugar Man was directed by Malik Bendjelloul
+Liberal Arts is not in the collection.
+The Intouchables was directed by Olivier Nakache and Eric Toledano
+
 ```
 
-Please test this program with *TestArraysAndExceptions.java*.
+You can use **TestMovie** class to test this exercise.
 
 Submit this lab
 ------------------
