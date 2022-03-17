@@ -70,7 +70,7 @@ public class PancakeShop {
             Pancake p = new Pancake(i);
 
             //TODO: Add the pancake to the top of the stack.
-            // HINT: Stacks are Last-In-First-Out (LIFO)
+            // HINT:Stacks are Last-In-First-Out (LIFO)
             pancakes.addFirst(p);
 
         }
