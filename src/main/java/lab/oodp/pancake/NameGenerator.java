@@ -18,7 +18,6 @@ public class NameGenerator {
     public NameGenerator() {
 
         Set<String> names = new TreeSet<>();
-
         try (Scanner scanner = new Scanner(new File("names.txt"))) {
 
             while (scanner.hasNextLine()) {
