@@ -41,8 +41,8 @@ public class TestReflectionUtils {
         Class<?> clazz = obj.getClass();
 
         try {
-//            Method method = clazz.getMethod(methodName, getParameterTypes(args));
-            Method method = getAppropriateMethod(clazz, methodName, args);
+            Method method = clazz.getMethod(methodName, getParameterTypes(args));
+//            Method method = getAppropriateMethod(clazz, methodName, args);
             return (T) method.invoke(obj, args);
 
         } catch (NoSuchMethodException e) {

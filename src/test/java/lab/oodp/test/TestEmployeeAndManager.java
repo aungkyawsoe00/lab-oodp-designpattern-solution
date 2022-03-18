@@ -2,6 +2,7 @@ package lab.oodp.test;
 
 import lab.oodp.test.TestReflectionUtils;
 import lab.oodp.company.model.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +59,7 @@ public class TestEmployeeAndManager {
     @Test
     public void testGetters() {
 
-        assertEquals(1, (Integer) TestReflectionUtils.callMethod(theBoss, "getId"));
+        assertEquals(1, theBoss.getId());
         assertEquals("The Boss", TestReflectionUtils.callMethod(theBoss, "getName"));
         assertEquals("boss@trex-sandwich.com", TestReflectionUtils.callMethod(theBoss, "getEmail"));
         assertEquals("CEO", TestReflectionUtils.callMethod(theBoss, "getJobTitle"));
