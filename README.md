@@ -1,97 +1,54 @@
-Lab - Input Output
+Lab - Design Pattern
 ==========
 
 Before you start
 ----------
-The purpose of this lab is to practice using different type of collections provided by Java.
+In today's lab, you'll be working to create the beginnings of an employee database Swing application. The app will be able to display information about employees in a GUI, including who their managers are. Each exercise will involve adding a little more functionality to the app.
 
-Exercise One - Simple Collections
----------------------
-1.What is the output of the following code?
+Below is the sample UI of complete application.
+![CompanyDB](image/companydb.png)
 
-```java
-ArrayList list = new ArrayList();
-Character letter = new Character('a');
-list.add(letter);
-if (list.get(0).equals("a")) {
-	System.out.println("funny");
-} else {
-	System.out.println("Not funny");
-}
-```
-
-```
-Your answer here
-```
-
-2.What is the output of the following code?
-
-```java
-ArrayList<Point> list = new ArrayList<Point>();
-Point pt1 = new Point(3, 4);
-list.add(pt1);
-Point pt2 = list.get(0);
-pt2.x = 23;
-if (pt2 == pt1) {
-	System.out.println("Same object");
-} else {
-	System.out.println("Different object");
-}
-```
-
-```
-Your answer here
-```
-
-Exercise Two - Pancake
-----------------------
-The restaurant, PancakeTopia, is a very unusual, yet popular restaurant. Every day for lunch, they make a certain number of pancakes at random and put them in a large stack. Customers who want some delicious pancake-y goodness for lunch form a large queue outside. In turn, the restaurant lets one customer into the restaurant, who sits down at the table and eats as many pancakes as they want from the top of the stack. One that person is done, the next person sits down, and so on, until PancakeTopia runs out of either pancakes or customers for the day. Sometimes, customers at the end of the queue might not get fed – but PancakeTopia remains in business since their pancakes are the best in the land – the reward is worth the risk!
-
-In this exercise, we’ll complete a program which models a typical lunchtime at PancakeTopia. The nearly-complete application is located in the lab.oodp.pancake package, and example outputs for the complete program (once you’ve made the necessary changes) can be found in the files PancakeTopia-ExampleOutput-01.txt and PancakeTopia-ExampleOutput-02.txt, which are located directly in the project directory. Here are the steps to go through to complete this exercise.
-
-### Step 1: Understanding ###
-Have a look at the code and see what’s there. Try to get an idea of how everything fits together. Perhaps try to draw some quick UML diagrams to assist you. This is often a good first step when trying to learn any new system.
-
-### Step 2:Getting the customers to form a queue ###
-In the PancakeApp class, you’ll have noticed a method called *createCustomerQueue()* which creates a random number of customers (*numCustomers*), and should add those customers to a queue. For this step (you may follow TODO in the source code), complete this method. Firstly, initialize the queue variable to something other than null. Secondly, call one of queue’s methods at the marked location to add the generated customer to that queue. Remember that queues are First-In-First-Out (FIFO) – meaning, the first customer to line up will be the first to get served.
-
-Next, in PancakeShop’s *serveLunch()* method, there’s a loop where we want to continually get the customer at the front of the queue. Complete that line by using an appropriate poll statement. Remember that we should be de-queuing customers in the same order that we queue them.
-
-**HINT: You can use ArrayDeque and its method such as addLast and pollFirst to handle queue in FIFO manner**
+In addition to the code which you must complete, a set of unit tests has been provided which should help you debug any errors. The unit tests which should pass at the end of each lab exercise are given in the corresponding exercise.
 
 
-### Step 3: Stacking those pancakes ###
-In PancakeShop’s *createPancakes()* method, we are creating a random number of Pancakes. Complete the method so that created pancakes get added to the top of the pancakes stack. Remember that stacks are Last-In-First-Out (LIFO) – meaning, the last pancake to be added to the stack will be the first one that’s eaten by a customer.
+## Exercise One: Employees and Managers
+In this exercise, you'll begin by completing the "class" to be used by the app - the `Employee` and `Manager` classes. These classes should be implemented following the *composite* design pattern: each `Manager` is a special kind of `Employee` who can also manage other employees. Each `Employee` also knows who its manager is.
 
-**HINT: You can use ArrayDeque and its method such as addFirst and pollFirst to handle stack in LIFO manner**
+To begin, skeleton code for the two classes is given to you. Complete this code by following these steps:
+
+1. Add necessary fields to the `Employee` and `Manager` classes, and complete the constructors which should populate those fields.
+
+2. Add necessary *getter* methods to `Employee`. `TestEmployeeAndManager.testGetters()` can show you which getters you need.
+
+3. Complete all method skeletons provided in the `Employee` and `Manager` classes. To understand what each method should do, please read the method comments, and look at the unit tests (each method to implement has at least one unit test associated with it).
+
+When complete, all unit tests in the `TestEmployeeAndManager` class should pass. **Note:** Having these tests pass is a good indication that your code is correct, but not a guarantee - you should still have your code checked by a tutor if you're unsure!
+
+**Hint:** Some of the method comments contain hints about how the corresponding methods can be implemented. Make sure to read them if you're stuck! You can also carefully examine the unit tests to see what the results of various methods should be for various inputs.
 
 
-### Step 4: Eat pancakes! ###
-We now have a queue of customers and a stack of pancakes. It’s time to teach the customers how to eat! This is handled in the Customer’s *eat()* method, which you have to complete. In this method, customers are handed a stack of pancakes and should try to eat as many pancakes from the top of the stack as will fit in their belly. If there’s not enough pancakes for them (no more pancake in the stack such as pollFirst become null), they should complain by throwing a **HungryException**.
+## Exercise Two: Displaying employees in a JTree
+In this exercise, we'll get our employment hierarchy displayed to the user in a `JTree`.
+
+`JTree` pulls the data it displays from an instance of a `TreeModel`. However, we have a `Manager` that we want to display, rather than a `TreeModel` (called `ceo` in `EmployeeApp`'s `initGui()` method). This means we must create an *adapter* to allow an `Employee` to be displayed in a `JTree`.
+
+For this exercise, complete the `EmployeeTreeAdapter`, a skeleton of which has been provided to you. Use the unit tests in `TestEmployeeTreeModel`, plus the [TreeModel documentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/tree/TreeModel.html), to guide you. For this exercise, you may ignore the `valueForPathChanged()`, `addTreeModelListener()`, and `removeTreeModelListener()` methods (i.e. leave them blank).
+
+Once all `TestEmployeeTreeModel` unit tests pass, then appropriately modify `EmployeeApp.initGui()` so that an instance of `EmployeeTreeAdapter` is used to display the provide `ceo` in the `tree`.
 
 
-Below is the result of running PancakeApp. Please note that your result might not be exactly the same. One thing to notice is customer's id such as Jayna[1] and Donya[2] are in ascending order, while pancake's id are descending order (e.g. 839,838,837,836)
+## Exercise Three: Displaying employees in a JTable
+In this exercise, we'll get our employee details displayed to the user in a `JTable`.
 
-```
-Jayna [1] sat at the table. They want to eat 10 pancakes for lunch!
-Jayna [1] ate Pancake #839!
-Jayna [1] ate Pancake #838!
-Jayna [1] ate Pancake #837!
-Jayna [1] ate Pancake #836!
-Jayna [1] ate Pancake #835!
-Jayna [1] ate Pancake #834!
-Jayna [1] ate Pancake #833!
-Jayna [1] ate Pancake #832!
-Jayna [1] ate Pancake #831!
-Jayna [1] ate Pancake #830!
-Jayna [1] ate 10 pancakes in total!
-Jayna [1] is happy and full!
-Donya [2] sat at the table. They want to eat 3 pancakes for lunch!
-Donya [2] ate Pancake #829!
-Donya [2] ate Pancake #828!
-Donya [2] ate Pancake #827!
-```
-You can use TestPancakeApp to test this exercise.
+Similarly to Exercise Three above, we want to display information in a `JTable`, but these tables get their information from a `TableModel` whereas we have an `Employee` instead. We must again create an adapter.
+
+For this exercise, complete the `EmployeeTableAdapter`, a skeleton of which has been provided to you. Use the unit tests in `TestEmployeeTableModel`, plus the [TableModel documentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/table/TableModel.html), to guide you.
+
+Once all `TestEmployeeTableModel` unit tests pass, then appropriately modify `EmployeeApp.initGui()` so that an instance of `EmployeeTableAdapter` is used to display the provide `ceo` in the `table`.
+
+**Hint:** What `Manager` method, which you implemented in Exercise One, could be used to get a list of *all* employees?
+
+
 
 Submit this lab
 ------------------
