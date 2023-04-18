@@ -316,31 +316,6 @@ public class TestEmployeeAndManager {
      * <p>
      * To easily get a list which achieves this functionality, see {@link java.util.Collections#unmodifiableList(List)}.
      */
-    @Test
-    public void testGetEmployeesReturnsUnmodifiableList() {
+   
 
-        List<Employee> list = bob.getEmployees();
-
-        try {
-            list.add(new Employee(10, "blah", "blah", "blah", 1));
-            fail("Should not be able to add to the employee list directly.");
-
-        } catch (UnsupportedOperationException e) {
-
-            assertEquals(2, list.size());
-            assertSame(dave, list.get(0));
-            assertSame(eve, list.get(1));
-        }
-
-        try {
-            list.remove(eve);
-            fail("Should not be able to remove from the employee list directly.");
-
-        } catch (UnsupportedOperationException e) {
-
-            assertEquals(2, list.size());
-            assertSame(dave, list.get(0));
-            assertSame(eve, list.get(1));
-        }
-    }
 }

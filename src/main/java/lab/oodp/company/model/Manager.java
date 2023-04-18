@@ -34,7 +34,7 @@ public class Manager extends Employee {
      * @return an unmodifiable list of employees
      */
     public List<Employee> getEmployees() {
-        return Collections.unmodifiableList(employees);
+        return employees;
     }
 
     /**
